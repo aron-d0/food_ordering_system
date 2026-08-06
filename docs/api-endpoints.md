@@ -1,64 +1,32 @@
 # REST API Endpoints
 
+The food API is public for straightforward Postman demonstration. No login or Authorization header is required.
+
 Base local URL:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-## Authentication
-
-### Login and generate token
-
-```http
-POST /api/login
-Content-Type: application/json
-```
-
-Body:
-
-```json
-{
-  "username": "admin",
-  "password": "admin"
-}
-```
-
-Response includes:
-
-```json
-{
-  "token": "generated_token",
-  "token_type": "Bearer"
-}
-```
-
-Use the returned token in Postman:
+Production URL:
 
 ```text
-Authorization: Bearer generated_token
+https://foodorderingsystem-production-654c.up.railway.app
 ```
 
-### Logout/revoke token
+## Food APIs
 
-```http
-POST /api/logout
-Authorization: Bearer generated_token
-```
-
-## Protected Food APIs
-
-All `/api/foods` routes require a valid Bearer token.
-
-| Method | Endpoint | Purpose | Role |
-| --- | --- | --- | --- |
-| GET | `/api/foods` | Retrieve food records | Admin or Customer |
-| GET | `/api/foods/{id}` | Retrieve one food record | Admin or Customer |
-| POST | `/api/foods` | Create food record | Admin |
-| PUT/PATCH | `/api/foods/{id}` | Update food record | Admin |
-| DELETE | `/api/foods/{id}` | Delete food record | Admin |
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| GET | `/api/foods` | Retrieve all food records |
+| GET | `/api/foods/{id}` | Retrieve one food record |
+| POST | `/api/foods` | Create a food record |
+| PUT/PATCH | `/api/foods/{id}` | Update a food record |
+| DELETE | `/api/foods/{id}` | Delete a food record |
 
 ## Example food JSON body
+
+Use this body for POST and PUT/PATCH requests:
 
 ```json
 {
@@ -72,18 +40,22 @@ All `/api/foods` routes require a valid Bearer token.
 }
 ```
 
-## Demo expectations
+## Postman demo flow
 
-Without token:
+1. Set the method.
+2. Paste the endpoint URL.
+3. For POST or PUT/PATCH, add the JSON body.
+4. Click Send.
 
-```text
-GET /api/foods
-Expected: 401 Unauthenticated
+Example:
+
+```http
+GET https://foodorderingsystem-production-654c.up.railway.app/api/foods
 ```
 
-With token:
+Expected:
 
 ```text
-GET /api/foods
-Expected: 200 OK with food records
+200 OK
+Food records returned
 ```

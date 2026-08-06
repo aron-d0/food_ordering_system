@@ -1,46 +1,31 @@
 {
   "info": {
-    "name": "Food Ordering System API",
+    "name": "Food Ordering System Public API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    { "key": "base_url", "value": "http://127.0.0.1:8000" },
-    { "key": "token", "value": "" },
+    { "key": "base_url", "value": "https://foodorderingsystem-production-654c.up.railway.app" },
     { "key": "food_id", "value": "1" }
   ],
   "item": [
     {
-      "name": "Login - Generate Token",
-      "request": {
-        "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin\"\n}"
-        },
-        "url": "{{base_url}}/api/login"
-      }
-    },
-    {
-      "name": "GET Foods - Without Token Should Fail",
-      "request": {
-        "method": "GET",
-        "url": "{{base_url}}/api/foods"
-      }
-    },
-    {
       "name": "GET Foods",
       "request": {
         "method": "GET",
-        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
         "url": "{{base_url}}/api/foods"
+      }
+    },
+    {
+      "name": "GET One Food",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/foods/{{food_id}}"
       }
     },
     {
       "name": "POST Create Food",
       "request": {
         "method": "POST",
-        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
         "header": [{ "key": "Content-Type", "value": "application/json" }],
         "body": {
           "mode": "raw",
@@ -53,7 +38,6 @@
       "name": "PUT Update Food",
       "request": {
         "method": "PUT",
-        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
         "header": [{ "key": "Content-Type", "value": "application/json" }],
         "body": {
           "mode": "raw",
@@ -66,16 +50,7 @@
       "name": "DELETE Food",
       "request": {
         "method": "DELETE",
-        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
         "url": "{{base_url}}/api/foods/{{food_id}}"
-      }
-    },
-    {
-      "name": "Logout - Revoke Token",
-      "request": {
-        "method": "POST",
-        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
-        "url": "{{base_url}}/api/logout"
       }
     }
   ]

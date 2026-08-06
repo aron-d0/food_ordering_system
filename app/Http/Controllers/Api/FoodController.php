@@ -22,8 +22,6 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        abort_unless($request->user()->isAdmin(), 403, 'Admin token required.');
-
         $food = Food::create($this->validatedFood($request));
 
         return response()->json($food, 201);
@@ -42,8 +40,6 @@ class FoodController extends Controller
      */
     public function update(Request $request, Food $food)
     {
-        abort_unless($request->user()->isAdmin(), 403, 'Admin token required.');
-
         $food->update($this->validatedFood($request));
 
         return $food;
@@ -54,8 +50,6 @@ class FoodController extends Controller
      */
     public function destroy(Food $food)
     {
-        abort_unless(request()->user()->isAdmin(), 403, 'Admin token required.');
-
         if ($food->orders()->exists()) {
             return response()->json([
                 'message' => 'This food has orders and cannot be deleted.',

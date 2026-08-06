@@ -1,6 +1,6 @@
 # Online Food Ordering Management System
 
-A Laravel-based food ordering application for ELEC1. It includes food CRUD, customer ordering, role-based middleware, Google OAuth hooks, REST APIs, and Sanctum Bearer token security for Postman testing.
+A Laravel-based food ordering application for ELEC1. It includes food CRUD, customer ordering, role-based middleware, Google OAuth hooks, and public REST APIs for straightforward Postman testing.
 
 ## Demo accounts
 
@@ -50,10 +50,10 @@ See [API endpoints](docs/api-endpoints.md).
 
 Main Postman flow:
 
-1. `POST /api/login`
-2. Copy the returned token.
-3. Set Postman Authorization type to Bearer Token.
-4. Test protected `/api/foods` endpoints.
+1. Pick the API method.
+2. Paste the `/api/foods` URL.
+3. Add a JSON body for create/update requests.
+4. Send the request directly.
 
 Postman collection:
 
