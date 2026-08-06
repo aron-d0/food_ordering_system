@@ -2,6 +2,8 @@
 
 A Laravel-based food ordering application for ELEC1. It includes food CRUD, customer ordering, role-based middleware, Google OAuth hooks, and public REST APIs for straightforward Postman testing.
 
+Live demo-ready deployment is configured for Railway.
+
 ## Demo accounts
 
 After running the seeders:
